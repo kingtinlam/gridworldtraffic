@@ -63,8 +63,15 @@ public class TrafficLight extends Actor implements Comparable
         return col;
     }
     
+    public void changeColor()
+    {
+        setColor(nextColor());
+        count = 0;
+    }
+    
     public void act()
     {
+        /*
         if(getColor().equals(Color.RED))
         {
             if(count <= RED_STEP)
@@ -91,6 +98,15 @@ public class TrafficLight extends Actor implements Comparable
         }
         setColor(nextColor());
         count = 0;
+        */
+        if(isGreen())
+        {
+            count--;
+        }
+        else
+        {
+            count++;
+        }
     }
     
     public LinkedList<Vehicle> getLine()
@@ -122,12 +138,17 @@ public class TrafficLight extends Actor implements Comparable
     {
         return numCars;
     }
+    
+    public int getPoints()
+    {
+        return numCars + count;
+    }
 
     public int compareTo(Object o)
     {
         if(o instanceof TrafficLight)
         {
-            return (int)Math.signum(getNumCars() - ((TrafficLight)o).getNumCars());
+            return (int)Math.signum(getPoints() - ((TrafficLight)o).getPoints());
         }
         throw new IllegalArgumentException("Parameter not a TrafficLight.");
     }
