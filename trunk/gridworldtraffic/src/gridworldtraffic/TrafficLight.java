@@ -1,6 +1,6 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * A traffic light faces the direction of the road it is a light to. Therefore,
+ * in front of the light (direction 0) is a car if there is any line at all.
  */
 
 package gridworldtraffic;
@@ -10,20 +10,23 @@ import info.gridworld.grid.*;
 import info.gridworld.gui.*;
 import info.gridworld.world.*;
 import java.awt.Color;
+import java.util.LinkedList;
 
 /**
  *
  * @author vivek bhagwat and alan joyce and kevin lo
  */
-public class TrafficLight extends Actor
+public class TrafficLight extends Actor implements Comparable
 {
     private int count;
     private final int RED_STEP = 5, YELLOW_STEP = 2, GREEN_STEP = 5;
+    private int numCars;
     
     public TrafficLight()
     {
         super();
         setColor(nextColor());
+        numCars = 0;
     }
     
     public TrafficLight(Grid grid, Location loc)
@@ -88,5 +91,44 @@ public class TrafficLight extends Actor
         }
         setColor(nextColor());
         count = 0;
+    }
+    
+    public LinkedList<Vehicle> getLine()
+    {
+        Vehicle first;
+        LinkedList<Vehicle> list = new LinkedList<Vehicle>();
+        try
+        {
+            first = (Vehicle) (getGrid().get(getLocation().getAdjacentLocation(0)));
+
+        } catch (ClassCastException classCastException) 
+        {
+            System.out.println("No vehicle in line");
+            return null;
+        }
+        
+        Vehicle current = first;
+        list.add(current);
+        while(current.getInBack() instanceof Vehicle) //while in back is vehicle
+        {
+            list.add((Vehicle)current.getInBack());
+            current = (Vehicle)current.getInBack();
+        }
+        numCars = list.size();
+        return list;
+    }
+    
+    public int getNumCars()
+    {
+        return numCars;
+    }
+
+    public int compareTo(Object o)
+    {
+        if(o instanceof TrafficLight)
+        {
+            return (int)Math.signum(getNumCars() - ((TrafficLight)o).getNumCars());
+        }
+        throw new IllegalArgumentException("Parameter not a TrafficLight.");
     }
 }
