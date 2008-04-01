@@ -70,7 +70,7 @@ public class Vehicle extends Actor
     public boolean atIntersection()
     {
         Actor front = getInFront();
-        if(front instanceof TrafficLight)
+        if(front instanceof Intersection)
         {
             return true;            
         }

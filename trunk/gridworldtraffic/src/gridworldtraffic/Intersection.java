@@ -9,15 +9,17 @@ import info.gridworld.actor.*;
 import info.gridworld.grid.*;
 import info.gridworld.gui.*;
 import info.gridworld.world.*;
+import java.util.Iterator;
 import java.util.PriorityQueue;
 
 /**
  *
  * @author vivek bhagwat and alan joyce and kevin lo
  */
-public class Intersection 
+public class Intersection extends Actor
 {
-    private PriorityQueue lights;
+    private PriorityQueue<TrafficLight> lights;
+    private PriorityQueue<TrafficLight> lightsCopy;
     
     public Intersection(TrafficLight n, TrafficLight e, TrafficLight w, TrafficLight s)
     {
@@ -25,5 +27,25 @@ public class Intersection
         lights.add(e);
         lights.add(w);
         lights.add(s);
+    }
+    
+    public void act()
+    {
+        Iterator<TrafficLight> i = lights.iterator();
+        while(i.hasNext())
+        {
+            i.next().act();
+        }
+        
+        //Refreshes the ordering of the queue.
+        lightsCopy.addAll(lights);
+        lights.clear();
+        lights.addAll(lightsCopy);
+        lightsCopy.clear();
+        
+        if(!lights.peek().isGreen())
+        {
+            lights.peek().changeColor();
+        }
     }
 }
