@@ -17,7 +17,7 @@ import java.awt.Color;
  */
 public class Vehicle extends Actor
 {
-    
+
     private int speed; //squares per step
     
     public Vehicle()
@@ -61,11 +61,15 @@ public class Vehicle extends Actor
         return getGrid().get(getLocation().getAdjacentLocation(0));
     }
     
+    public Actor getInBack()
+    {
+        return getGrid().get(getLocation().getAdjacentLocation(180));
+    }
+    
     //only true if location in front of it is a traffic light
     public boolean atIntersection()
     {
-        Location locInFront = getLocation().getAdjacentLocation(0);
-        Actor front = getGrid().get(locInFront);
+        Actor front = getInFront();
         if(front instanceof TrafficLight)
         {
             return true;            
