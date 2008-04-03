@@ -48,4 +48,10 @@ public class Intersection extends Actor
             lights.peek().changeColor();
         }
     }
+    
+    //@param loc is the location of the vehicle
+    public Color getLightColor(Location loc)
+    {
+        return null;
+    }
 }
