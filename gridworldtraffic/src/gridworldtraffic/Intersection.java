@@ -9,6 +9,7 @@ import info.gridworld.actor.*;
 import info.gridworld.grid.*;
 import info.gridworld.gui.*;
 import info.gridworld.world.*;
+import java.awt.Color;
 import java.util.Iterator;
 import java.util.PriorityQueue;
 
@@ -50,7 +51,7 @@ public class Intersection extends Actor
     }
     
     //@param loc is the location of the vehicle
-    public Color getLightColor(Location loc)
+    public Color getLightColor(TrafficLocation loc)
     {
         return null;
     }

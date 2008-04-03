@@ -19,6 +19,7 @@ public class Vehicle extends Actor
 {
 
     private int speed; //squares per step
+    private TrafficLocation location;
     
     public Vehicle()
     {
@@ -56,9 +57,19 @@ public class Vehicle extends Actor
         this.speed = speed;
     }
     
+    public TrafficLocation getLocation()
+    {
+        return location;
+    }
+    
+    public Location locInFront()
+    {
+        return getLocation().getAdjacentLocation(0);
+    }
+    
     public Actor getInFront()
     {
-        return getGrid().get(getLocation().getAdjacentLocation(0));
+        return getGrid().get(locInFront());
     }
     
     public Actor getInBack()
@@ -107,9 +118,31 @@ public class Vehicle extends Actor
     
     public void act()
     {
+        Actor front = getInFront();
+        Actor back = getInBack();
         if(atIntersection())
         {
-            Color col = (Intersection)(getInFront()).getLightColor(getLocation());
+            Color col = ((Intersection)front).getLightColor(getLocation());
+        }
+        else
+        {
+            if(getSpeed() > getLocation().getSpeedLimit())
+                setSpeed(getLocation().getSpeedLimit());
+            
+            if(front instanceof Vehicle)
+            {
+                if(((Vehicle)front).getSpeed() == 0)
+                {
+                    stop();
+                }
+            }
+            else
+            {
+                for(int i = 0; i < speed; i++)
+                {
+                    moveTo(locInFront());
+                }
+            }
         }
         //if at intersection, wait until light turns green
         //check speed limit, go at that speed.
