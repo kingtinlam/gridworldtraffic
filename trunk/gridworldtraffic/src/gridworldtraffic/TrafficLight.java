@@ -11,6 +11,7 @@ import info.gridworld.gui.*;
 import info.gridworld.world.*;
 import java.awt.Color;
 import java.util.LinkedList;
+import java.util.Queue;
 
 /**
  *
@@ -109,7 +110,7 @@ public class TrafficLight extends Actor implements Comparable
         }
     }
     
-    public LinkedList<Vehicle> getLine()
+    public Queue<Vehicle> getLine()
     {
         Vehicle first;
         LinkedList<Vehicle> list = new LinkedList<Vehicle>();
@@ -131,7 +132,7 @@ public class TrafficLight extends Actor implements Comparable
             current = (Vehicle)current.getInBack();
         }
         numCars = list.size();
-        return list;
+        return (Queue)list;
     }
     
     public int getNumCars()
