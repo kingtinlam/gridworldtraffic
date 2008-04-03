@@ -107,6 +107,10 @@ public class Vehicle extends Actor
     
     public void act()
     {
+        if(atIntersection())
+        {
+            Color col = (Intersection)(getInFront()).getLightColor(getLocation());
+        }
         //if at intersection, wait until light turns green
         //check speed limit, go at that speed.
         //if want to turn at intersection, do so.
