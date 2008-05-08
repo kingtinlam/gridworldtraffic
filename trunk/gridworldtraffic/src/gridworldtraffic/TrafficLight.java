@@ -30,7 +30,7 @@ public class TrafficLight extends Actor implements Comparable
         numCars = 0;
     }
     
-    public TrafficLight(Grid grid, Location loc)
+    public TrafficLight(Grid grid, TrafficLocation loc)
     {
         this();
         putSelfInGrid(grid, loc);
