@@ -18,13 +18,13 @@ public class TrafficLocation extends Location implements Comparable
     private int row;
     private int col;
     private int speedLimit;
-	private String roadType;
+    private String roadType;
     
     public TrafficLocation(int r, int c, int speed, String roadType)
     {
         super(r, c);
         setSpeedLimit(speed);
-		setRoadType(roadType);
+	setRoadType(roadType);
     }
 
     public int getSpeedLimit()

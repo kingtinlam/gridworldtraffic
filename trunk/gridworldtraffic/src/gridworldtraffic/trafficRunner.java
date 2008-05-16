@@ -19,12 +19,12 @@ public class trafficRunner
     /**
      * @param args the command line arguments
      */
-    public static void main() 
+    public static void main(String[] args) 
     {
-		System.out.println("hi this is the main!");
+	System.out.println("hi this is the main!");
         ActorWorld world = new ActorWorld();
-        //world.add(new TrafficLocation(7, 8, 5, "road"), new Vehicle());
-		world.add(new Location(2, 3), new Actor());
+        world.add(new TrafficLocation(7, 8, 5, "road"), new Vehicle());
+	world.add(new Location(2, 3), new Actor());
         world.show();
     }
 
