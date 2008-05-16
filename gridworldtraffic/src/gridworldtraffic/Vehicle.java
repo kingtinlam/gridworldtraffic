@@ -25,12 +25,14 @@ public class Vehicle extends Actor
     {
         super();
         speed = 1;
+        location = new TrafficLocation(0,0,5,"road");
     }
     
     public Vehicle(int speed)
     {
         this();
         this.speed = speed;
+        location = new TrafficLocation(0,0,5,"road");
     }
     
     public Vehicle(Grid grid, Location loc, int direction, Color col)
@@ -39,12 +41,14 @@ public class Vehicle extends Actor
         putSelfInGrid(grid, loc);
         setDirection(direction);
         setColor(col);
+        location = new TrafficLocation(loc.getRow(),loc.getCol(),5,"road");
     }
     
     public Vehicle(Grid grid, Location loc, int direction, Color col, int speed)
     {
         this(grid, loc, direction, col);
         this.speed = speed;
+        location = new TrafficLocation(loc.getRow(),loc.getCol(),5,"road");
     }
 
     public int getSpeed() 
