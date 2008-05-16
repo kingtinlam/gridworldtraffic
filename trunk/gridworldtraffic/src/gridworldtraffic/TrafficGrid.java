@@ -16,7 +16,7 @@ import info.gridworld.world.*;
 
 public class TrafficGrid
 {
-	private UnboundedGrid<ArrayList> grid;
+	//private UnboundedGrid<ArrayList> grid;
 	
 	
 	
