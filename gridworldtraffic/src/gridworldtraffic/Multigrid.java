@@ -10,6 +10,7 @@ import info.gridworld.grid.*;
 import info.gridworld.gui.*;
 import info.gridworld.world.*;
 import java.awt.Color;
+import java.util.*;
 
 /**
  *
@@ -20,7 +21,7 @@ public class Multigrid
    private UnboundedGrid<Set<Object>> grid;  // no other instance variables 
  
  
-  public UnboundedMultigrid()  
+  public void UnboundedMultigrid()  
   {  grid = new UnboundedGrid<Set<Object>>();  }
  
  
@@ -29,16 +30,16 @@ public class Multigrid
    *  Postcondition: the contents of this grid remain unchanged 
    */ 
   public Set<Object> get(Location loc) 
-  {  /* to be implemented in part (a) */  } 
+  {  return null;  } 
  
  
   /** Puts an object at a given location in this grid. 
    *  Precondition: (1) loc is valid in this grid. (2) obj is not null. 
    *  @param loc the location at which to put the object  
-   *  @param obj the new object to be added 
+   *  @param ob j the new object to be added 
    */ 
   public void put(Location loc, Object obj) 
-  {  /* to be implemented in part (b) */  } 
+  {    } 
  
  
   /** Gets the neighboring occupants in all eight compass directions  
@@ -48,5 +49,5 @@ public class Multigrid
    *  @return an array list of the objects in the occupied locations adjacent to loc in this grid 
    */ 
   public ArrayList<Object> getNeighbors(Location loc) 
-  {  /* to be implemented in part (c) */  }
+  {  return null; }
 }
